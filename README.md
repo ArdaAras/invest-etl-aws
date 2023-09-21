@@ -1,4 +1,4 @@
-# Complete stock data pipeline with AWS
+# Complete stock market data pipeline with AWS
 
 PART-1
 
