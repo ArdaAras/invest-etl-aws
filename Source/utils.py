@@ -1,4 +1,3 @@
-
 nasdaq_stocks_dict = {
     'ABNB': 'Airbnb Inc',
  'ALGN': 'Align Technology Inc',
@@ -103,3 +102,5 @@ nasdaq_stocks_dict = {
  'ZM': 'Zoom Video Communications Inc',
  'ZS': 'Zscaler Inc'
 }
+
+column_names = "Name,Open,High,Low,Close,Volume,Dividends,StockSplits"

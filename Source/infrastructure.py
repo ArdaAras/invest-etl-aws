@@ -28,4 +28,9 @@ def create_iam_role():
     pass
 
 def create_s3_bucket():
+    # create if not exists
+    pass
+
+def write_to_s3():
+    #create_s3_bucket()
     pass
