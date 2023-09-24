@@ -1,6 +1,7 @@
 import configparser
 import os
 import boto3
+from botocore.exceptions import ClientError
 
 config = configparser.ConfigParser()
 config.read('Source\config.cfg')
@@ -24,11 +25,26 @@ def create_cloudwatch_rule():
         State='ENABLED'  # Set to 'ENABLED' to enable the rule immediately
     )
 
-def create_iam_role():
-    pass
-
 def create_s3_bucket():
     # create if not exists
+    bucket_name = config['S3']['RAW_DATA_BUCKET']
+    s3 = boto3.client('s3', region_name=region_name)
+
+    # Check if the bucket exists
+    try:
+        s3.head_bucket(Bucket=bucket_name)
+        print(f"The bucket '{bucket_name}' already exists.")
+    except ClientError as e:
+        if e.response['Error']['Code'] == '404':
+            # The bucket does not exist, so create it
+            s3.create_bucket(
+                Bucket=bucket_name,
+                CreateBucketConfiguration={'LocationConstraint': region_name}
+            )
+            print(f"Created the bucket '{bucket_name}' in region '{region_name}'.")
+        else:
+            # Something else went wrong
+            print(f"An error occurred: {e}")
     pass
 
 def write_to_s3():

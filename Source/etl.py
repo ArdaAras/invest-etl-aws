@@ -28,10 +28,14 @@ def get_stocks_history() -> None:
     pass
 
 def main():
+    # Create daily trigger
     #infra.create_cloudwatch_rule()
     
+    # Create s3 bucket for raw data
+    #infra.create_s3_bucket()
+
     # Get yesterday's history of all stocks
-    #get_stocks_history()
+    #get_stocks_history()    
 
     pass
 
