@@ -9,6 +9,7 @@ config.read('Source\config.cfg')
 os.environ['AWS_ACCESS_KEY_ID'] = config['KEYS']['AWS_ACCESS_KEY_ID']
 os.environ['AWS_SECRET_ACCESS_KEY'] = config['KEYS']['AWS_SECRET_ACCESS_KEY']
 region_name = config['REGION']['REGION_NAME']
+bucket_name = config['S3']['RAW_DATA_BUCKET']
 
 def create_cloudwatch_rule():
     # Initialize the CloudWatch client
@@ -25,9 +26,9 @@ def create_cloudwatch_rule():
         State='ENABLED'  # Set to 'ENABLED' to enable the rule immediately
     )
 
+
 def create_s3_bucket():
     # create if not exists
-    bucket_name = config['S3']['RAW_DATA_BUCKET']
     s3 = boto3.client('s3', region_name=region_name)
 
     # Check if the bucket exists
@@ -45,8 +46,13 @@ def create_s3_bucket():
         else:
             # Something else went wrong
             print(f"An error occurred: {e}")
-    pass
+    
 
-def write_to_s3():
-    #create_s3_bucket()
-    pass
+def write_to_s3(file_name):
+    s3 = boto3.client('s3', region_name=region_name)
+
+    if os.path.isfile(file_name):
+        # if file exists, write it to S3
+        s3.upload_file(file_name, bucket_name, file_name)
+    else:
+        print(f"File not found!: {file_name}")

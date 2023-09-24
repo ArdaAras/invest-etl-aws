@@ -5,10 +5,10 @@ from datetime import datetime, timedelta
 
 def get_stocks_history() -> None:
     # compose file name (yesterday's date)
-    fileName = datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d') + ".csv"
+    file_name = datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d') + ".csv"
     
     # write header
-    with open(fileName, "a") as myfile:
+    with open(file_name, "a") as myfile:
         myfile.write(column_names + "\n")
 
     # write actual data
@@ -16,7 +16,7 @@ def get_stocks_history() -> None:
         currentTicker = yf.Ticker(stock)
         hist = currentTicker.history(period="1d")
         data_list = hist.values.tolist()
-        with open(fileName, "a") as myfile:
+        with open(file_name, "a") as myfile:
             line = f"{stock},"
             for itemlist in data_list:
                 for item in itemlist:
@@ -24,8 +24,10 @@ def get_stocks_history() -> None:
                 line = line.rstrip(',')
                 line += "\n"
             myfile.write(line)
-        
-    pass
+
+    # write file to s3
+    infra.write_to_s3(file_name)
+
 
 def main():
     # Create daily trigger
@@ -35,7 +37,7 @@ def main():
     #infra.create_s3_bucket()
 
     # Get yesterday's history of all stocks
-    #get_stocks_history()    
+    #get_stocks_history() 
 
     pass
 
