@@ -17,10 +17,13 @@ TBD
 **yfinance API** (https://github.com/ranaroussi/yfinance), AWS S3, Lambda, CloudWatch
 
 ## Files
-    1. dl.cfg           : Contains access, secret access keys and redshift database configuration information.
-    2. config.cfg       : Contains keys, bucket name and region information to be used within the project.
-    3. requirements.txt : Contains libraries used.
-    4. 2023-09-22.csv   : Sample NASDAQ stock data fetched on 22 Sept 2023.
+    1. Source/etl.py            : Entry point and actual ETL performer using other files in the repository.
+    2. Source/infrastructure.py : AWS infrastructure (as a code) functions.
+    3. Source/utils.py          : Column names (for future analysis) and NASDAQ stocks dictionary resides in this file.
+    4. Source/dl.cfg            : Contains access, secret access keys and redshift database configuration information.
+    5. config.cfg               : Contains keys, bucket name and region information to be used within the project.
+    6. requirements.txt         : Contains libraries used.
+    7. 2023-09-22.csv           : Sample NASDAQ stock data fetched on 22 Sept 2023.
 
 ## Author
 
