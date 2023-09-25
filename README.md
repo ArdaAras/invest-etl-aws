@@ -17,8 +17,10 @@ TBD
 **yfinance API** (https://github.com/ranaroussi/yfinance), AWS S3, Lambda, CloudWatch
 
 ## Files
-
-TBD
+    1. dl.cfg           : Contains access, secret access keys and redshift database configuration information.
+    2. config.cfg       : Contains keys, bucket name and region information to be used within the project.
+    3. requirements.txt : Contains libraries used.
+    4. 2023-09-22.csv   : Sample NASDAQ stock data fetched on 22 Sept 2023.
 
 ## Author
 
