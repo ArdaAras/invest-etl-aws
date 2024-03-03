@@ -10,16 +10,17 @@ PART-1
 
 PART-2
 
-TBD
+1) Daily running AWS Glue crawler to catalog data
+2) AWS Athena for raw data analysis and exploration
 
 ## Technologies and Tools
 
-**yfinance API** (https://github.com/ranaroussi/yfinance), AWS S3, Lambda, CloudWatch
+**yfinance API** (https://github.com/ranaroussi/yfinance), AWS S3, Lambda, CloudWatch, Glue, Athena
 
 ## Files
     1. Source/etl.py            : Entry point and actual ETL performer using other files in the repository.
     2. Source/infrastructure.py : AWS infrastructure (as a code) functions.
-    3. Source/utils.py          : Column names (for future analysis) and NASDAQ stocks dictionary resides in this file.
+    3. Source/utils.py          : Column names (for future analysis) and NASDAQ stocks dictionary reside in this file.
     4. Source/dl.cfg            : Contains access, secret access keys and redshift database configuration information.
     5. config.cfg               : Contains keys, bucket name and region information to be used within the project.
     6. requirements.txt         : Contains libraries used.
