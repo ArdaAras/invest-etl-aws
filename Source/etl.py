@@ -8,7 +8,7 @@ def get_stocks_history() -> None:
     file_name = datetime.strftime(datetime.now() - timedelta(1), '%Y-%m-%d') + ".csv"
     
     # write header
-    with open(file_name, "a") as myfile:
+    with open(file_name, "w+") as myfile:
         myfile.write(column_names + "\n")
 
     # write actual data
